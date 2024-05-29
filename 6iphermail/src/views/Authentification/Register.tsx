@@ -3,32 +3,14 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
-import img1 from "./authentication-dark.png";
-import img2 from "./authentication-light.png";
 import logo from "@/assets/logo.png";
 
 export default function Register() {
   return (
     <>
-      <div className="md:hidden">
-        <img
-          src={img1}
-          width={1280}
-          height={843}
-          alt="Authentication"
-          className="block dark:hidden"
-        />
-        <img
-          src={img2}
-          width={1280}
-          height={843}
-          alt="Authentication"
-          className="hidden dark:block"
-        />
-      </div>
-      <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+      <div className="container relative h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
-          to="#"
+          to="/login"
           className={cn(
             buttonVariants({ variant: "ghost" }),
             "absolute right-4 top-4 md:right-8 md:top-8"
@@ -40,8 +22,10 @@ export default function Register() {
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
             <img src={logo} alt="logo" height={70} width={70} />
-            <span> 6iphermail</span>
+            <span>6iphermail</span>
           </div>
+          <div className="relative z-20"><img src={logo} alt="logo" height={1000} width={1000} /></div>
+          
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
