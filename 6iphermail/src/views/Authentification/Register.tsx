@@ -1,5 +1,4 @@
 import { AuthRegisterForm } from "@/components/authentification/auth-register-form";
-import React from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
