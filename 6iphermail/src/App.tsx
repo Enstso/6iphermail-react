@@ -5,7 +5,6 @@ import Login from "./views/Authentification/Login";
 import MailPage from "./views/Mail/Mail";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "./components/header/site-header";
-
 function App() {
   return (
     <BrowserRouter>

@@ -1,5 +1,5 @@
 export const siteConfig = {
-    name: "Next.js",
+    name: "6iphermail",
     description:
       "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.",
     mainNav: [
@@ -7,11 +7,18 @@ export const siteConfig = {
         title: "Mails",
         href: "/mails",
       },
+      {
+        title: "New Device",
+        href: "/new-device",
+      },
+      {
+        title: "Settings",
+        href: "/settings",
+      },
+      
     ],
     links: {
-      twitter: "https://twitter.com/shadcn",
-      github: "https://github.com/shadcn/ui",
-      docs: "https://ui.shadcn.com",
+      github: "https://github.com/Enstso",
     },
   }
   

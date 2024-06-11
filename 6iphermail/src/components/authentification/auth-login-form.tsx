@@ -3,7 +3,7 @@ import { Icons } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/authentification/password-input";
-import { cn } from "@/lib/utils";
+import { cn,urls,postData } from "@/lib/utils";
 
 interface AuthLoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -13,12 +13,17 @@ const [password, setPassword] = React.useState<string>("");
 const [isDiscord, setIsDiscord] = React.useState<boolean>(false);
 const [isGitHub, setIsGitHub] = React.useState<boolean>(false);
 const [isGoogle, setIsGoogle] = React.useState<boolean>(false);
+const [email, setEmail] = React.useState<string>("");
+
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
+    postData(urls.login, { email, password }).then((data) => {
+      console.log(data);
+    });
   }
 
   return (
@@ -34,6 +39,8 @@ const [isGoogle, setIsGoogle] = React.useState<boolean>(false);
               autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="grid gap-1">

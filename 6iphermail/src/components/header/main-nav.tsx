@@ -1,9 +1,10 @@
+
 import { Link } from "react-router-dom"
 import { NavItem } from "@/types/nav"
 import { siteConfig } from "@/site"
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons/icons"
-
+import logo from "@/assets/logo.png"
 interface MainNavProps {
   items?: NavItem[]
 }
@@ -12,7 +13,7 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link to="/" className="flex items-center space-x-2">
-        <Icons.logo className="h-6 w-6" />
+       <img src={logo} alt="" width={50} height={50} />
         <span className="inline-block font-bold">{siteConfig.name}</span>
       </Link>
       {items?.length ? (

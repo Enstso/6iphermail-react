@@ -3,7 +3,7 @@ import { Icons } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/authentification/password-input";
-import { cn } from "@/lib/utils";
+import { cn, postData, urls } from "@/lib/utils";
 
 interface AuthRegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -15,28 +15,42 @@ export function AuthRegisterForm({
   const [isDiscord, setIsDiscord] = React.useState<boolean>(false);
   const [isGitHub, setIsGitHub] = React.useState<boolean>(false);
   const [isGoogle, setIsGoogle] = React.useState<boolean>(false);
+  const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [passwordConfirmation, setPasswordConfirmation] =
     React.useState<string>("");
-
+  const [username, setUsername] = React.useState<string>("");
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
+
     setIsLoading(true);
-    setIsGitHub(true);
-    setIsGoogle(true);
-    setIsDiscord(true);
     setTimeout(() => {
       setIsLoading(false);
-      setIsGitHub(false);
-      setIsGoogle(false);
-      setIsDiscord(false);
     }, 3000);
+
+    if (password !== passwordConfirmation) {
+      alert("Passwords do not match");
+      return;
+    }
+    postData(urls.register, { username,email, password }).then((data) => {
+      console.log(data);
+    });
   }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
+        <div className="grid gap-1">
+            <Input
+              id="username"
+              placeholder="username"
+              type="text"
+              autoCapitalize="none"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
           <div className="grid gap-1">
             <Input
               id="email"
@@ -46,6 +60,8 @@ export function AuthRegisterForm({
               autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="grid gap-1">

@@ -3,8 +3,11 @@ import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
+import React from "react";
+import { useState } from "react";
 
 export default function Register() {
+  
   return (
     <>
       <div className="container relative h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -23,8 +26,10 @@ export default function Register() {
             <img src={logo} alt="logo" height={70} width={70} />
             <span>6iphermail</span>
           </div>
-          <div className="relative z-20"><img src={logo} alt="logo" height={1000} width={1000} /></div>
-          
+          <div className="relative z-20">
+            <img src={logo} alt="logo" height={1000} width={1000} />
+          </div>
+
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
