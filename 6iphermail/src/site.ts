@@ -8,8 +8,8 @@ export const siteConfig = {
         href: "/mails",
       },
       {
-        title: "New Device",
-        href: "/new-device",
+        title: "Devices",
+        href: "/devices",
       },
       {
         title: "Settings",
