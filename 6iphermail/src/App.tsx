@@ -20,6 +20,7 @@ function App() {
           <Route path="/mails" element={<MailPage />} />
           <Route path="/devices" element={<Devices />} />
           <Route path="/settings" element={<Settings/>}/>
+          <Route path="/settings/account" element={<Settings/>}/>
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
