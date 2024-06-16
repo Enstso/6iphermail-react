@@ -32,7 +32,7 @@ export function AuthRegisterForm({
       alert("Passwords do not match");
       return;
     }
-    postData(urls.register, { username,email, password }).then((data) => {
+    postData(urls.register, { username, email, password }).then((data) => {
       console.log(data);
     });
   }
@@ -41,7 +41,7 @@ export function AuthRegisterForm({
     <div className={cn("grid gap-6", className)} {...props}>
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
-        <div className="grid gap-1">
+          <div className="grid gap-1">
             <Input
               id="username"
               placeholder="username"
