@@ -13,7 +13,7 @@ export const siteConfig = {
       },
       {
         title: "Settings",
-        href: "/settings",
+        href: "/settings/account",
       },
       
     ],

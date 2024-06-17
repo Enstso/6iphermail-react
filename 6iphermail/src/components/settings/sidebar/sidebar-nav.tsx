@@ -13,7 +13,7 @@ interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
 
 export default function SidebarNav({ className, items, ...props }: SidebarNavProps) {
   const pathname = window.location.pathname
-
+console.log(pathname);
   return (
     <nav
       className={cn(
@@ -28,8 +28,8 @@ export default function SidebarNav({ className, items, ...props }: SidebarNavPro
           to={item.href}
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            pathname === item.href
-              ? "bg-muted hover:bg-muted"
+            pathname === item.href 
+              ? "bg-slate-50 hover:bg-slate-50"
               : "hover:bg-transparent hover:underline",
             "justify-start"
           )}
@@ -37,6 +37,7 @@ export default function SidebarNav({ className, items, ...props }: SidebarNavPro
           {item.title}
         </Link>
       ))}
+      
     </nav>
   )
 }

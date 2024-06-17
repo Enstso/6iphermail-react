@@ -21,6 +21,7 @@ function App() {
           <Route path="/devices" element={<Devices />} />
           <Route path="/settings" element={<Settings/>}/>
           <Route path="/settings/account" element={<Settings/>}/>
+          <Route path="/settings/mail" element={<Settings/>}/>
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

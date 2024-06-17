@@ -1,16 +1,11 @@
-import { Separator } from "@/components/ui/separator"
-import { AccountForm } from "./account/account"
-export default function SettingsProfilePage() {
+import { AccountForm } from "./account/account-form";
+import MailForm from "./mail/mail-form";
+export default function SettingsAccountPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-medium">Profile</h3>
-        <p className="text-sm text-muted-foreground">
-          This is how others will see you on the site.
-        </p>
-      </div>
-      <Separator />
-      <AccountForm />
+      {location.pathname === "/settings" && <AccountForm />}
+      {location.pathname === "/settings/account" && <AccountForm />}
+      {location.pathname === "/settings/mail" && <MailForm />}
     </div>
-  )
+  );
 }

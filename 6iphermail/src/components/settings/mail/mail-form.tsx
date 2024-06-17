@@ -1,0 +1,23 @@
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+export default function MailForm() {
+  return (
+    <>
+      <div>
+        <h3 className="text-lg font-medium">Mail</h3>
+        <p className="text-sm text-muted-foreground">
+          Configure your mail for get your mails.
+        </p>
+      </div>
+      <Separator />
+      <form className="space-y-3">
+        <div className="flex flex-col space-y-3">
+          <Input type="text" placeholder="email" />
+        </div>
+        <Button type="submit">Submit</Button>{" "}
+      </form>
+    </>
+  );
+}
