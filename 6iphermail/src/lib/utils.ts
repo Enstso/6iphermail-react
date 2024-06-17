@@ -1,19 +1,18 @@
 import { type ClassValue, clsx } from "clsx"
-import exp from "constants"
-import { register } from "module"
 import { twMerge } from "tailwind-merge"
 
 export const urls = {
   register: "http://localhost:3333/api/auth/register",
   login: "http://localhost:3333/api/auth/login",
   logout: "http://localhost:3333/api/auth/logout",
-
+  identifierMail: "http://localhost:3333/api/gmail/6iphermail/mail/identifier",
+  generateAuthCode:"http://localhost:3333/api/6iphermail/generateAuthCode",
 }
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function getData(url: string) {
+export async  function getData(url: string) {
   return fetch(url, {
     method: "GET", headers: {
       "Content-Type": "application/json",
@@ -22,7 +21,7 @@ export function getData(url: string) {
   ).then((res) => res.json())
 }
 
-export function postData(url: string, data: any, options?: RequestInit) {
+export async function postData(url: string, data: any, options?: RequestInit) {
   return fetch(url, {
     ...options,
     method: "POST",

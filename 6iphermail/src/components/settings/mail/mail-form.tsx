@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
+import { postData, urls } from "@/lib/utils";
 export default function MailForm() {
+  const [email, setEmail] = useState<string>("");
+
+  async function onSubmit() {
+    postData(urls.identifierMail, { email });
+  }
   return (
     <>
       <div>
@@ -12,11 +18,15 @@ export default function MailForm() {
         </p>
       </div>
       <Separator />
-      <form className="space-y-3">
+      <form className="space-y-3" onSubmit={onSubmit}>
         <div className="flex flex-col space-y-3">
-          <Input type="text" placeholder="email" />
+          <Input
+            type="text"
+            placeholder="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-        <Button type="submit">Submit</Button>{" "}
+        <Button type="submit">Submit</Button>
       </form>
     </>
   );
