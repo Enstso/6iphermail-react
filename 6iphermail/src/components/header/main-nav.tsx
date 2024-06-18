@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { NavItem } from "@/types/nav"
 import { siteConfig } from "@/site"
 import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons/icons"
 import logo from "@/assets/logo.png"
 interface MainNavProps {
   items?: NavItem[]

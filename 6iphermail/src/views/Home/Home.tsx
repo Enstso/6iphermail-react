@@ -20,7 +20,7 @@ export default function Home() {
           <img src={logo} alt="logo" height={70} width={70} />
           <span>6iphermail</span>
         </div>
-        <div className="relative z-20">
+        <div className=" flex justify-center z-20">
           <img src={logo} alt="logo" height={1000} width={1000} />
         </div>
 
@@ -34,7 +34,7 @@ export default function Home() {
               ensuring secure electronic communications with a user-friendly
               interface.&rdquo;
             </p>
-            <footer className="text-sm">6iphermail</footer>
+            <footer className="flex justify-center text-sm">6iphermail</footer>
           </blockquote>
         </div>
       </div>

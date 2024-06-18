@@ -2,7 +2,7 @@ import { siteConfig } from "@/site";
 import { buttonVariants, Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons/icons";
 import { MainNav } from "./main-nav";
-import { ModeToggle } from "../mode-toggle";
+import { ModeToggle } from "../theme/mode-toggle";
 import { Link } from "react-router-dom";
 import { LogOutIcon } from "lucide-react";
 import { urls, getData } from "@/lib/utils";
@@ -17,7 +17,7 @@ export function SiteHeader() {
   }
   return (
     <header className="static top-0 z-40 w-full border-b bg-background">
-      <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
+      <div className=" flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
