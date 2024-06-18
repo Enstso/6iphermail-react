@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { siteConfig } from "@/site";
 import { buttonVariants, Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons/icons";

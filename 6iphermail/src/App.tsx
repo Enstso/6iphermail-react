@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/components/authentification/auth-context"; // Assurez-vous du bon chemin
 import Register from "./views/Authentification/Register";

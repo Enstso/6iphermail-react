@@ -7,6 +7,10 @@ export const urls = {
   logout: "http://localhost:3333/api/auth/logout",
   identifierMail: "http://localhost:3333/api/gmail/6iphermail/mail/identifier",
   generateAuthCode:"http://localhost:3333/api/6iphermail/generateAuthCode",
+  github: "http://localhost:3333/api/auth/github",
+  google: "http://localhost:3333/api/auth/google",
+  discord: "http://localhost:3333/api/auth/discord"
+
 }
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

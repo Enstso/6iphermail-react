@@ -1,6 +1,3 @@
-// NotFound.js
-import React from "react";
-
 const NotFound = () => {
   return (
     <div className="flex items-center justify-center h-screen bg-zinc-900 text-white">

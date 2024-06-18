@@ -1,9 +1,9 @@
-import * as React from "react";
+import React,{useState} from "react";
 import { Icons } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/authentification/password-input";
-import { cn, postData, urls } from "@/lib/utils";
+import { cn, getData,postData, urls } from "@/lib/utils";
 
 interface AuthRegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -11,18 +11,17 @@ export function AuthRegisterForm({
   className,
   ...props
 }: AuthRegisterFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [isDiscord, setIsDiscord] = React.useState<boolean>(false);
-  const [isGitHub, setIsGitHub] = React.useState<boolean>(false);
-  const [isGoogle, setIsGoogle] = React.useState<boolean>(false);
-  const [email, setEmail] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
-  const [passwordConfirmation, setPasswordConfirmation] =
-    React.useState<string>("");
-  const [username, setUsername] = React.useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDiscord, setIsDiscord] = useState<boolean>(false);
+  const [isGitHub, setIsGitHub] = useState<boolean>(false);
+  const [isGoogle, setIsGoogle] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
-
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
@@ -33,6 +32,28 @@ export function AuthRegisterForm({
       return;
     }
     postData(urls.register, { username, email, password }).then((data) => {
+      console.log(data);
+    });
+  }
+
+  async function handleGithub() {
+    setIsGitHub(true);
+    getData(urls.github).then((data) => {
+      console.log(data);
+    }
+    );
+  }
+
+  async function handleGoogle() {
+    setIsGoogle(true);
+    getData(urls.google).then((data) => {
+      console.log(data);
+    });
+  }
+  
+  async function handleDiscord() {
+    setIsDiscord(true);
+    getData(urls.discord).then((data) => {
       console.log(data);
     });
   }
@@ -100,7 +121,7 @@ export function AuthRegisterForm({
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isGitHub}>
+      <Button variant="outline" type="button" disabled={isGitHub} onClick={handleGithub}>
         {isGitHub ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
@@ -108,7 +129,7 @@ export function AuthRegisterForm({
         )}{" "}
         GitHub
       </Button>
-      <Button variant="outline" type="button" disabled={isGoogle}>
+      <Button variant="outline" type="button" disabled={isGoogle} onClick={handleGoogle}>
         {isGoogle ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
@@ -116,7 +137,7 @@ export function AuthRegisterForm({
         )}{" "}
         Google
       </Button>
-      <Button variant="outline" type="button" disabled={isDiscord}>
+      <Button variant="outline" type="button" disabled={isDiscord} onClick={handleDiscord}>
         {isDiscord ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
