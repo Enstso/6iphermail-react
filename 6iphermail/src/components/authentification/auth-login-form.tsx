@@ -1,28 +1,29 @@
-import * as React from "react";
+import React,{useContext,useState} from "react";
 import { Icons } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/authentification/password-input";
 import { cn,urls,postData } from "@/lib/utils";
+import { AuthContext} from "@/components/authentification/auth-context";
 
 interface AuthLoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function AuthLoginForm({ className, ...props }: AuthLoginFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+const [isLoading, setIsLoading] = React.useState<boolean>(false);
 const [password, setPassword] = React.useState<string>("");
 const [isDiscord, setIsDiscord] = React.useState<boolean>(false);
 const [isGitHub, setIsGitHub] = React.useState<boolean>(false);
 const [isGoogle, setIsGoogle] = React.useState<boolean>(false);
 const [email, setEmail] = React.useState<string>("");
-
-  async function onSubmit(event: React.SyntheticEvent) {
+const authContext = useContext(AuthContext);
+async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
     postData(urls.login, { email, password }).then((data) => {
-      console.log(data);
+      authContext.login();
     });
   }
 

@@ -1,5 +1,4 @@
 import logo from "@/assets/logo.png";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -26,7 +25,7 @@ export default function Home() {
 
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
-            <p className="text-lg">
+            <p>
               &ldquo;The project aims to develop an innovative anti-phishing
               email system that uses advanced AI and machine learning to detect
               and prevent phishing attacks. It analyzes incoming emails,

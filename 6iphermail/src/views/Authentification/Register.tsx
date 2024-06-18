@@ -30,9 +30,9 @@ export default function Register() {
             <img src={logo} alt="logo" height={1000} width={1000} />
           </div>
 
-          <div className="relative z-20 mt-auto">
+          <div className="flex justify-center z-20 mt-auto">
             <blockquote className="space-y-2">
-              <p className="text-lg">
+              <p>
                 &ldquo;The project aims to develop an innovative anti-phishing
                 email system that uses advanced AI and machine learning to
                 detect and prevent phishing attacks. It analyzes incoming
@@ -40,7 +40,7 @@ export default function Register() {
                 real-time, ensuring secure electronic communications with a
                 user-friendly interface.&rdquo;
               </p>
-              <footer className="text-sm">6iphermail</footer>
+              <footer className="flex justify-center  text-sm">6iphermail</footer>
             </blockquote>
           </div>
         </div>

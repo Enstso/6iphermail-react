@@ -10,10 +10,10 @@ import Settings from "./views/Settings/Settings";
 import Home from "./views/Home/Home";
 import Devices from "./views/Devices/Devices";
 import ProtectedRoute from "@/components/authentification/auth-protected"; // Assurez-vous du bon chemin
-
+import NotFound from "./views/NotFound";
 function App() {
   return (
-    <div className="p-8">
+    <div className="container mx-auto">
       <BrowserRouter>
         <AuthProvider>
           <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -43,6 +43,8 @@ function App() {
                 path="/settings/mail"
                 element={<ProtectedRoute element={<Settings />} />}
               />
+              <Route path="*" element={<NotFound/>} />
+
             </Routes>
           </ThemeProvider>
         </AuthProvider>
