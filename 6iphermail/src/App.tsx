@@ -15,7 +15,7 @@ function App() {
     <div className="container mx-auto">
       <BrowserRouter>
         <AuthProvider>
-          <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
             <SiteHeader />
             <Routes>
               <Route path="/" element={<Home />} />

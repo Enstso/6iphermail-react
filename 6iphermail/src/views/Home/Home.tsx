@@ -13,7 +13,7 @@ import { ShieldCheck, Rocket, Link as LinkIcon } from "lucide-react";
 export default function Home() {
   return (
     <div>
-      <div className="relative h-full flex-col bg-muted p-10 text-white flex dark:border-r">
+      <div className="relative h-full flex-col bg-muted p-10 text-white flex  dark:">
         <div className="absolute inset-0 bg-zinc-900" />
         <div className="relative z-20 flex items-center text-lg font-medium">
           <img src={logo} alt="logo" height={70} width={70} />
