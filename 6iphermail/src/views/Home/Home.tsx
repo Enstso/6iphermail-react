@@ -10,19 +10,26 @@ import {
 } from "@/components/ui/card";
 import { ShieldCheck, Rocket, Link as LinkIcon } from "lucide-react";
 import { getData, urls } from "@/lib/utils";
-import  { useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { AuthContext } from "@/components/authentification/auth-context";
 export default function Home() {
   const authContext = useContext(AuthContext);
-
+  console.log(authContext);
   useEffect(() => {
-    getData(urls.me).then((data) => {
-      if (data?.user) {
-        console.log(data);
-        authContext.login();
+    const fetchUserData = async () => {
+      try {
+        const data = await getData(urls.me);
+        if (data?.username) {
+          console.log(data);
+          authContext.login();
+        }
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
       }
-    });
-  });
+    };
+
+    fetchUserData();
+  }, [authContext]);
 
   return (
     <div>

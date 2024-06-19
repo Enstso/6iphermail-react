@@ -5,11 +5,9 @@ export default function DevicesForm() {
   const [code, setCode] = useState<number[]>([]);
   useEffect(() => {
     getData(urls.generateAuthCode).then((data) => {
-      console.log(data);
-      setCode(data.code);
+      setCode(data.code.toString().split("").map(Number));
     });
     return () => {
-      console.log("unmounted");
       setCode([]);
     };
   }, []);

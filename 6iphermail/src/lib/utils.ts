@@ -1,3 +1,4 @@
+import { mails } from "@/components/mail/data"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -11,6 +12,7 @@ export const urls = {
   google: "http://localhost:3333/api/auth/google",
   discord: "http://localhost:3333/api/auth/discord",
   me: "http://localhost:3333/api/6iphermail/me",
+  mails: "http://localhost:3333/api/gmail/6iphermail/mails",
 
 }
 export function cn(...inputs: ClassValue[]) {

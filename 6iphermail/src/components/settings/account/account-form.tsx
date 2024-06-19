@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
+import React, { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -13,6 +13,7 @@ import {
   FormItem,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { getData, urls } from "@/lib/utils";
 
 const accountFormSchema = z.object({
   username: z
@@ -41,8 +42,11 @@ type AccountFormValues = z.infer<typeof accountFormSchema>;
 
 // This can come from your database or API.
 const defaultValues: Partial<AccountFormValues> = {
-  // name: "Your name",
-  // dob: new Date("2023-01-23"),
+  username: "",
+  email: "",
+  oldPassword: "",
+  password: "",
+  "confirm-password": "",
 };
 
 export function AccountForm() {
@@ -50,6 +54,24 @@ export function AccountForm() {
     resolver: zodResolver(accountFormSchema),
     defaultValues,
   });
+
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getData(urls.me);
+        form.reset({
+          username: data.username,
+          email: data.email,
+        });
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
 
   function onSubmit(data: AccountFormValues) {
     console.log(data);
@@ -83,7 +105,7 @@ export function AccountForm() {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="email" placeholder="email" {...field} />
+                  <Input type="email" disabled placeholder="email" {...field} />
                 </FormControl>
               </FormItem>
             )}
