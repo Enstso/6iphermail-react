@@ -1,22 +1,23 @@
-import React,{useContext,useState} from "react";
+import React, { useContext, useState } from "react";
 import { Icons } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/authentification/password-input";
-import { cn, getData,postData, urls } from "@/lib/utils";
-import { AuthContext} from "@/components/authentification/auth-context";
+import { cn, getData, postData, urls } from "@/lib/utils";
+import { AuthContext } from "@/components/authentification/auth-context";
+import { redirect } from "react-router-dom";
 
 interface AuthLoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function AuthLoginForm({ className, ...props }: AuthLoginFormProps) {
-const [isLoading, setIsLoading] = useState<boolean>(false);
-const [password, setPassword] = useState<string>("");
-const [isDiscord, setIsDiscord] = useState<boolean>(false);
-const [isGitHub, setIsGitHub] = useState<boolean>(false);
-const [isGoogle, setIsGoogle] = useState<boolean>(false);
-const [email, setEmail] = useState<string>("");
-const authContext = useContext(AuthContext);
-async function onSubmit(event: React.SyntheticEvent) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>("");
+  const [isDiscord, setIsDiscord] = useState<boolean>(false);
+  const [isGitHub, setIsGitHub] = useState<boolean>(false);
+  const [isGoogle, setIsGoogle] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+  const authContext = useContext(AuthContext);
+  async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
@@ -29,22 +30,21 @@ async function onSubmit(event: React.SyntheticEvent) {
   async function handleGithub() {
     setIsGitHub(true);
     getData(urls.github).then((data) => {
-      console.log(data);
-    }
-    );
+      location.href = data.url ;
+    });
   }
 
   async function handleGoogle() {
     setIsGoogle(true);
     getData(urls.google).then((data) => {
-      console.log(data);
+      location.href = data.url ;
     });
   }
-  
+
   async function handleDiscord() {
     setIsDiscord(true);
     getData(urls.discord).then((data) => {
-      console.log(data);
+      location.href = data.url ;
     });
   }
 
@@ -91,7 +91,12 @@ async function onSubmit(event: React.SyntheticEvent) {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isGitHub} onClick={handleGithub}>
+      <Button
+        variant="outline"
+        type="button"
+        disabled={isGitHub}
+        onClick={handleGithub}
+      >
         {isGitHub ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
@@ -99,7 +104,12 @@ async function onSubmit(event: React.SyntheticEvent) {
         )}{" "}
         GitHub
       </Button>
-      <Button variant="outline" type="button" disabled={isGoogle} onClick={handleGoogle}>
+      <Button
+        variant="outline"
+        type="button"
+        disabled={isGoogle}
+        onClick={handleGoogle}
+      >
         {isGoogle ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
@@ -107,7 +117,12 @@ async function onSubmit(event: React.SyntheticEvent) {
         )}{" "}
         Google
       </Button>
-      <Button variant="outline" type="button" disabled={isDiscord} onClick={handleDiscord}>
+      <Button
+        variant="outline"
+        type="button"
+        disabled={isDiscord}
+        onClick={handleDiscord}
+      >
         {isDiscord ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (

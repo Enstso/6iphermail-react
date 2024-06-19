@@ -3,8 +3,6 @@ import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
-import React from "react";
-import { useState } from "react";
 
 export default function Register() {
   

@@ -1,10 +1,10 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Icons } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/authentification/password-input";
-import { cn, getData,postData, urls } from "@/lib/utils";
-
+import { cn, getData, postData, urls } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 interface AuthRegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function AuthRegisterForm({
@@ -19,7 +19,7 @@ export function AuthRegisterForm({
   const [password, setPassword] = useState<string>("");
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
   const [username, setUsername] = useState<string>("");
-
+  const navigate = useNavigate();
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
@@ -32,29 +32,28 @@ export function AuthRegisterForm({
       return;
     }
     postData(urls.register, { username, email, password }).then((data) => {
-      console.log(data);
+      navigate("/login");
     });
   }
 
   async function handleGithub() {
     setIsGitHub(true);
     getData(urls.github).then((data) => {
-      console.log(data);
-    }
-    );
+      location.href = data.url;
+    });
   }
 
   async function handleGoogle() {
     setIsGoogle(true);
     getData(urls.google).then((data) => {
-      console.log(data);
+      location.href = data.url;
     });
   }
-  
+
   async function handleDiscord() {
     setIsDiscord(true);
     getData(urls.discord).then((data) => {
-      console.log(data);
+      location.href = data.url;
     });
   }
 
@@ -121,7 +120,12 @@ export function AuthRegisterForm({
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isGitHub} onClick={handleGithub}>
+      <Button
+        variant="outline"
+        type="button"
+        disabled={isGitHub}
+        onClick={handleGithub}
+      >
         {isGitHub ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
@@ -129,7 +133,12 @@ export function AuthRegisterForm({
         )}{" "}
         GitHub
       </Button>
-      <Button variant="outline" type="button" disabled={isGoogle} onClick={handleGoogle}>
+      <Button
+        variant="outline"
+        type="button"
+        disabled={isGoogle}
+        onClick={handleGoogle}
+      >
         {isGoogle ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
@@ -137,7 +146,12 @@ export function AuthRegisterForm({
         )}{" "}
         Google
       </Button>
-      <Button variant="outline" type="button" disabled={isDiscord} onClick={handleDiscord}>
+      <Button
+        variant="outline"
+        type="button"
+        disabled={isDiscord}
+        onClick={handleDiscord}
+      >
         {isDiscord ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (

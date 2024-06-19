@@ -9,8 +9,21 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ShieldCheck, Rocket, Link as LinkIcon } from "lucide-react";
-
+import { getData, urls } from "@/lib/utils";
+import  { useEffect, useContext } from "react";
+import { AuthContext } from "@/components/authentification/auth-context";
 export default function Home() {
+  const authContext = useContext(AuthContext);
+
+  useEffect(() => {
+    getData(urls.me).then((data) => {
+      if (data?.user) {
+        console.log(data);
+        authContext.login();
+      }
+    });
+  });
+
   return (
     <div>
       <div className="relative h-full flex-col bg-muted p-10 text-white flex  dark:">
@@ -51,7 +64,12 @@ export default function Home() {
             </div>
           </CardContent>
           <CardFooter>
-          <Link className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300  bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full" to="/register">Join us</Link>
+            <Link
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300  bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full"
+              to="/register"
+            >
+              Join us
+            </Link>
           </CardFooter>
         </Card>
         <Card className="flex-1">
@@ -67,7 +85,12 @@ export default function Home() {
             </div>
           </CardContent>
           <CardFooter>
-          <Link className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300  bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full" to="/register">Join us</Link>
+            <Link
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300  bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full"
+              to="/register"
+            >
+              Join us
+            </Link>
           </CardFooter>
         </Card>
         <Card className="flex-1">
@@ -83,7 +106,12 @@ export default function Home() {
             </div>
           </CardContent>
           <CardFooter>
-              <Link className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300  bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full" to="/register">Join us</Link>
+            <Link
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300  bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full"
+              to="/register"
+            >
+              Join us
+            </Link>
           </CardFooter>
         </Card>
       </div>
