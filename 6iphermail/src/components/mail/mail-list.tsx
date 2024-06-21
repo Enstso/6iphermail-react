@@ -53,9 +53,6 @@ interface MailListProps {
                 </div>
                 <div className="text-xs font-medium">{item.subject}</div>
               </div>
-              <div className="line-clamp-2 text-xs text-muted-foreground">
-                {item.text.substring(0, 300)}
-              </div>
               {item.labels.length ? (
                 <div className="flex items-center gap-2">
                   {item.labels.map((label) => (
@@ -72,16 +69,22 @@ interface MailListProps {
     )
   }
   
-  function getBadgeVariantFromLabel(
-    label: string
-  ): ComponentProps<typeof Badge>["variant"] {
-    if (["work"].includes(label.toLowerCase())) {
-      return "default"
+  function getBadgeVariantFromLabel(label: string): ComponentProps<typeof Badge>["variant"] {
+    const lowerCaseLabel = label.toLowerCase();
+  
+    if (lowerCaseLabel === "low risk") {
+      return "green"; // Assuming "green" corresponds to low risk
     }
   
-    if (["personal"].includes(label.toLowerCase())) {
-      return "outline"
+    if (lowerCaseLabel === "medium risk") {
+      return "orange"; // Assuming "orange" corresponds to medium risk
     }
   
-    return "secondary"
+    if (lowerCaseLabel === "high risk") {
+      return "destructive"; // Assuming "red" corresponds to high risk
+    }
+  
+    // Default case, if the label doesn't match any of the risk levels
+    return "secondary"; // or whatever default variant you want to return
   }
+  

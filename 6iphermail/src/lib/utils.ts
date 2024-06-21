@@ -1,6 +1,7 @@
 import { mails } from "@/components/mail/data"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { threadId } from "worker_threads"
 
 export const urls = {
   register: "http://localhost:3333/api/auth/register",
@@ -13,7 +14,9 @@ export const urls = {
   discord: "http://localhost:3333/api/auth/discord",
   me: "http://localhost:3333/api/6iphermail/me",
   mails: "http://localhost:3333/api/gmail/6iphermail/mails",
-
+  mail: "http://localhost:3333/api/gmail/6iphermail/mail/",
+  threads: "http://localhost:3333/api/gmail/6iphermail/threads",
+  whois: "http://localhost:3333/api/gmail/6iphermail/whois", 
 }
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

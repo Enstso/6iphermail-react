@@ -9,22 +9,26 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+interface Account {
+  label: string;
+  email: string;
+  icon: React.ReactNode;
+}
+
 interface AccountSwitcherProps {
   isCollapsed: boolean;
-  accounts: {
-    label: string;
-    email: string;
-    icon: React.ReactNode;
-  }[];
+  accounts: Account[];
 }
 
 export function AccountSwitcher({
   isCollapsed,
   accounts,
 }: AccountSwitcherProps) {
+  console.log(accounts);
   const [selectedAccount, setSelectedAccount] = React.useState<string>(
-    accounts[0].email
+    accounts.length > 0 ? accounts[0].email : ''
   );
+
   return (
     <Select defaultValue={selectedAccount} onValueChange={setSelectedAccount}>
       <SelectTrigger

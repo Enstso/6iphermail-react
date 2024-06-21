@@ -214,7 +214,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
           </div>
           <Separator />
           <div className="flex-1 whitespace-pre-wrap p-4 text-sm">
-            {mail.text}
+           <div dangerouslySetInnerHTML={{__html:mail.text}}/>
           </div>
           <Separator className="mt-auto" />
           <div className="p-4">
