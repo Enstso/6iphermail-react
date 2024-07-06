@@ -45,3 +45,17 @@ export async function postData(url: string, data: any, options?: RequestInit) {
     body: JSON.stringify(data),
   }).then((res) => res.json())
 }
+
+
+export async function postDataV2(url: string, data: any, options?: RequestInit) {
+  return fetch(url, {
+    ...options,
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+
+    body: JSON.stringify(data),
+  })
+}

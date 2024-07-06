@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { getData, postData, urls } from "@/lib/utils";
 export default function MailForm() {
   const [email, setEmail] = useState<string>("");
-
+  const [nbMails, setNbMails] = useState<number>(0);
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    postData(urls.identifierMail, { email }).then((data) => {
+    postData(urls.identifierMail, { email,nbMails }).then((data) => {
       getData(urls.mails).then((data) => {
         location.href = data.url;
       });
@@ -30,6 +30,13 @@ export default function MailForm() {
             placeholder="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <Input
+            max={500}
+            type="number"
+            placeholder="number of mails"
+            onChange={(e) => setNbMails(parseInt(e.target.value))}
           />
         </div>
         <Button type="submit">Submit</Button>

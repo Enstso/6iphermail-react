@@ -3,7 +3,7 @@ import { Icons } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/authentification/password-input";
-import { cn, getData, postData, urls } from "@/lib/utils";
+import { cn, getData, postDataV2, urls } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 interface AuthRegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -31,7 +31,8 @@ export function AuthRegisterForm({
       alert("Passwords do not match");
       return;
     }
-    postData(urls.register, { username, email, password }).then((data) => {
+    postDataV2(urls.register, { username, email, password }).then(() => {
+      console.log("registered");
       navigate("/login");
     });
   }

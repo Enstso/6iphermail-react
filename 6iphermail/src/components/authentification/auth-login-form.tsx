@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/authentification/password-input";
 import { cn, getData, postData, urls } from "@/lib/utils";
 import { AuthContext } from "@/components/authentification/auth-context";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface AuthLoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -17,6 +17,7 @@ export function AuthLoginForm({ className, ...props }: AuthLoginFormProps) {
   const [isGoogle, setIsGoogle] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
@@ -25,6 +26,7 @@ export function AuthLoginForm({ className, ...props }: AuthLoginFormProps) {
     }, 3000);
     postData(urls.login, { email, password }).then((data) => {
       authContext.login();
+      navigate("/");
     });
   }
   async function handleGithub() {
