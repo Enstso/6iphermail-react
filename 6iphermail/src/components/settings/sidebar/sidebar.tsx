@@ -10,6 +10,10 @@ const sidebarNavItems = [
   {
     title: "Mail",
     href: "/settings/mail",
+  },
+  {
+    title: "Contacts",
+    href: "/settings/contacts",
   }
 ]
 

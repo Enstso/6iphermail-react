@@ -42,6 +42,10 @@ function App() {
                 path="/settings/mail"
                 element={<ProtectedRoute><Settings /></ProtectedRoute>}
               />
+               <Route
+                path="/settings/contacts"
+                element={<ProtectedRoute><Settings /></ProtectedRoute>}
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </ThemeProvider>

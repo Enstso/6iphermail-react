@@ -6,6 +6,7 @@ import { getData, postData, urls } from "@/lib/utils";
 export default function MailForm() {
   const [email, setEmail] = useState<string>("");
   const [nbMails, setNbMails] = useState<number>(0);
+  
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     postData(urls.identifierMail, { email,nbMails }).then((data) => {

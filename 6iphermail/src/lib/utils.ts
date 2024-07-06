@@ -1,4 +1,4 @@
-import { mails } from "@/components/mail/data"
+import { contacts, mails } from "@/components/mail/data"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { threadId } from "worker_threads"
@@ -17,6 +17,7 @@ export const urls = {
   mail: "http://localhost:3333/api/gmail/6iphermail/mail/",
   threads: "http://localhost:3333/api/gmail/6iphermail/threads",
   whois: "http://localhost:3333/api/gmail/6iphermail/whois", 
+  contacts: "http://localhost:3333/api/6iphermail/contacts",
 }
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -27,8 +28,6 @@ export async function getData(url: string) {
     method: "GET", headers: {
       "Content-Type": "application/json",
     }, credentials: "include",
-
-
   },
   ).then((res) => res.json())
 }
