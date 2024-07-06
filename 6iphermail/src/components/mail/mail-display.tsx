@@ -1,43 +1,20 @@
-import {addDays} from "date-fns/addDays";
-import {addHours} from "date-fns/addHours";
-import {format} from "date-fns/format";
-import {nextSaturday} from "date-fns/nextSaturday";
-
+import React, { useEffect, useRef } from 'react';
+import { addDays, addHours, format, nextSaturday } from "date-fns";
 import {
-  Archive,
-  ArchiveX,
-  Clock,
-  Forward,
-  MoreVertical,
-  Reply,
-  ReplyAll,
-  Trash2,
+  Archive, ArchiveX, Clock, Forward, MoreVertical, Reply, ReplyAll, Trash2
 } from "lucide-react";
-
 import {
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenu,
-  DropdownMenuTrigger,
+  DropdownMenuContent, DropdownMenuItem, DropdownMenu, DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Calendar } from "@/components/ui/calendar";
-
 import { Mail } from "@/components/mail/data";
 
 interface MailDisplayProps {
@@ -46,6 +23,16 @@ interface MailDisplayProps {
 
 export function MailDisplay({ mail }: MailDisplayProps) {
   const today = new Date();
+  const iframeRef = useRef(null);
+
+  useEffect(() => {
+    if (iframeRef.current && mail) {
+      const doc = iframeRef.current.contentDocument;
+      doc.open();
+      doc.write(mail.text);
+      doc.close();
+    }
+  }, [mail]);
 
   return (
     <div className="flex h-full flex-col">
@@ -93,37 +80,25 @@ export function MailDisplay({ mail }: MailDisplayProps) {
                 <div className="flex flex-col gap-2 border-r px-2 py-4">
                   <div className="px-4 text-sm font-medium">Snooze until</div>
                   <div className="grid min-w-[250px] gap-1">
-                    <Button
-                      variant="ghost"
-                      className="justify-start font-normal"
-                    >
+                    <Button variant="ghost" className="justify-start font-normal">
                       Later today{" "}
                       <span className="ml-auto text-muted-foreground">
                         {format(addHours(today, 4), "E, h:m b")}
                       </span>
                     </Button>
-                    <Button
-                      variant="ghost"
-                      className="justify-start font-normal"
-                    >
+                    <Button variant="ghost" className="justify-start font-normal">
                       Tomorrow
                       <span className="ml-auto text-muted-foreground">
                         {format(addDays(today, 1), "E, h:m b")}
                       </span>
                     </Button>
-                    <Button
-                      variant="ghost"
-                      className="justify-start font-normal"
-                    >
+                    <Button variant="ghost" className="justify-start font-normal">
                       This weekend
                       <span className="ml-auto text-muted-foreground">
                         {format(nextSaturday(today), "E, h:m b")}
                       </span>
                     </Button>
-                    <Button
-                      variant="ghost"
-                      className="justify-start font-normal"
-                    >
+                    <Button variant="ghost" className="justify-start font-normal">
                       Next week
                       <span className="ml-auto text-muted-foreground">
                         {format(addDays(today, 7), "E, h:m b")}
@@ -186,16 +161,13 @@ export function MailDisplay({ mail }: MailDisplayProps) {
       </div>
       <Separator />
       {mail ? (
-        <div className="flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col overflow-hidden">
           <div className="flex items-start p-4">
             <div className="flex items-start gap-4 text-sm">
               <Avatar>
                 <AvatarImage alt={mail.name} />
                 <AvatarFallback>
-                  {mail.name
-                    .split(" ")
-                    .map((chunk) => chunk[0])
-                    .join("")}
+                  {mail.name.split(" ").map(chunk => chunk[0]).join("")}
                 </AvatarFallback>
               </Avatar>
               <div className="grid gap-1">
@@ -213,30 +185,23 @@ export function MailDisplay({ mail }: MailDisplayProps) {
             )}
           </div>
           <Separator />
-          <div className="flex-1 whitespace-pre-wrap p-4 text-sm">
-           <div dangerouslySetInnerHTML={{__html:mail.text}}/>
+          <div className="flex-1 overflow-auto p-4 text-sm">
+            <iframe
+              ref={iframeRef}
+              title="Mail Content"
+              style={{ width: '100%', height: '100%', border: 'none' }}
+            />
           </div>
           <Separator className="mt-auto" />
           <div className="p-4">
             <form>
               <div className="grid gap-4">
-                <Textarea
-                  className="p-4"
-                  placeholder={`Reply ${mail.name}...`}
-                />
+                <Textarea className="p-4" placeholder={`Reply ${mail.name}...`} />
                 <div className="flex items-center">
-                  <Label
-                    htmlFor="mute"
-                    className="flex items-center gap-2 text-xs font-normal"
-                  >
-                    <Switch id="mute" aria-label="Mute thread" /> Mute this
-                    thread
+                  <Label htmlFor="mute" className="flex items-center gap-2 text-xs font-normal">
+                    <Switch id="mute" aria-label="Mute thread" /> Mute this thread
                   </Label>
-                  <Button
-                    onClick={(e) => e.preventDefault()}
-                    size="sm"
-                    className="ml-auto"
-                  >
+                  <Button onClick={(e) => e.preventDefault()} size="sm" className="ml-auto">
                     Send
                   </Button>
                 </div>

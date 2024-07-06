@@ -71,16 +71,16 @@ interface MailListProps {
   
   function getBadgeVariantFromLabel(label: string): ComponentProps<typeof Badge>["variant"] {
     const lowerCaseLabel = label.toLowerCase();
-  
-    if (lowerCaseLabel === "low risk") {
+    console.log(lowerCaseLabel);
+    if (lowerCaseLabel === "potential low risk") {
       return "green"; // Assuming "green" corresponds to low risk
     }
   
-    if (lowerCaseLabel === "medium risk") {
+    if (lowerCaseLabel === "potential medium risk") {
       return "orange"; // Assuming "orange" corresponds to medium risk
     }
   
-    if (lowerCaseLabel === "high risk") {
+    if (lowerCaseLabel === "potential high risk") {
       return "destructive"; // Assuming "red" corresponds to high risk
     }
   

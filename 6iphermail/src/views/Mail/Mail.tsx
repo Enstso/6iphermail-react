@@ -1,6 +1,6 @@
 import { Mail } from "@/components/mail/mail";
 import { Cookies } from "react-cookie";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from 'react';
 import { getData, urls } from "@/lib/utils";
 import { mails as maili } from "@/components/mail/data";
 interface Account {
@@ -15,16 +15,21 @@ export default function MailPage() {
   const cookies = new Cookies();
   const layout = cookies.get("react-resizable-panels:layout");
   const collapsed = cookies.get("react-resizable-panels:collapsed");
+  const effectRan = useRef(false); // Tracks if effect has already run
 
   const defaultLayout = layout ? layout.value : undefined;
   const defaultCollapsed = collapsed ? collapsed.value : undefined;
 
   useEffect(() => {
+    // Prevent the effect from running twice in StrictMode
+    if (effectRan.current) return;
+    effectRan.current = true;
+
     const fetchAccounts = async () => {
       try {
         const data2 = await getData(urls.whois);
         const email = data2.email;
-        const account: Account = {
+        const account = {
           label: email.split("@")[0],
           email: data2.email,
           icon: (
@@ -37,7 +42,6 @@ export default function MailPage() {
             </svg>
           ),
         };
-
         setAccounts(prevAccounts => [...prevAccounts, account]);
       } catch (error) {
         console.error("Error fetching account data:", error);
@@ -45,12 +49,13 @@ export default function MailPage() {
     };
 
     fetchAccounts();
-  }, []); // empty dependency array means this effect runs once on mount
+  }, []);
 
   useEffect(() => {
     const fetchMails = async () => {
       try {
         const data = await getData(urls.threads);
+        console.log(data);
         const fetchedMails = data.threads.flatMap(thread =>
           thread.map(mail => ({
             id: mail.id,
@@ -62,6 +67,7 @@ export default function MailPage() {
             read: mail.is_read,
             labels: [mail.score],
           }))
+  
         );
 
         setMails(fetchedMails);
