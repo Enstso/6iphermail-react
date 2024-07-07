@@ -55,7 +55,7 @@ export default function Home() {
           </blockquote>
         </div>
       </div>
-      <div className="flex flex-row space-x-5 mt-10">
+      <div className="flex flex-col space-x-5 mt-10 sm:flex sm:flex-row">
         <Card className="flex-1">
           <CardHeader>
             <CardTitle>Secure Application</CardTitle>

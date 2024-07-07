@@ -25,6 +25,10 @@ export function AuthLoginForm({ className, ...props }: AuthLoginFormProps) {
       setIsLoading(false);
     }, 3000);
     postData(urls.login, { email, password }).then((data) => {
+      if(data.errors){
+        alert("Invalid credentials");
+        return;
+      }
       authContext.login();
       navigate("/");
     });

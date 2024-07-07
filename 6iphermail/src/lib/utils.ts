@@ -18,6 +18,7 @@ export const urls = {
   threads: "http://localhost:3333/api/gmail/6iphermail/threads",
   whois: "http://localhost:3333/api/gmail/6iphermail/whois", 
   contacts: "http://localhost:3333/api/6iphermail/contacts",
+  updateAccount: "http://localhost:3333/api/6iphermail/updateAccount",
 }
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

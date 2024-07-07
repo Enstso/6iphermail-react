@@ -13,7 +13,7 @@ import {
   FormItem,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { getData, urls } from "@/lib/utils";
+import { getData, postData, urls } from "@/lib/utils";
 
 const accountFormSchema = z.object({
   username: z
@@ -73,8 +73,15 @@ export function AccountForm() {
   }, []);
 
 
-  function onSubmit(data: AccountFormValues) {
-    console.log(data);
+  function onSubmit(data: AccountFormValues | any) {
+    if (data.password !== data["confirm-password"]) {
+      alert("Passwords do not match");
+      return;
+    }
+    postData(urls.updateAccount, data).then((data) => {
+        form.reset({}); // Reset the form after submission
+    });
+    
   }
 
   return (
