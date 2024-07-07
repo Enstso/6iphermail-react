@@ -14,13 +14,11 @@ import { useEffect, useContext } from "react";
 import { AuthContext } from "@/components/authentification/auth-context";
 export default function Home() {
   const authContext = useContext(AuthContext);
-  console.log(authContext);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const data = await getData(urls.me);
         if (data?.username) {
-          console.log(data);
           authContext.login();
         }
       } catch (error) {
@@ -70,14 +68,17 @@ export default function Home() {
               <ShieldCheck className="w-full h-full" />
             </div>
           </CardContent>
-          <CardFooter>
-            <Link
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300  bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full"
-              to="/register"
-            >
-              Join us
-            </Link>
-          </CardFooter>
+
+          {!authContext.isLoggedIn ? (
+            <CardFooter>
+              <Link
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300 bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full"
+                to="/register"
+              >
+                Join us
+              </Link>
+            </CardFooter>
+          ) : null}
         </Card>
         <Card className="flex-1">
           <CardHeader>
@@ -91,14 +92,16 @@ export default function Home() {
               <Rocket className="w-full h-full" />
             </div>
           </CardContent>
-          <CardFooter>
-            <Link
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300  bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full"
-              to="/register"
-            >
-              Join us
-            </Link>
-          </CardFooter>
+          {!authContext.isLoggedIn ? (
+            <CardFooter>
+              <Link
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300 bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full"
+                to="/register"
+              >
+                Join us
+              </Link>
+            </CardFooter>
+          ) : null}
         </Card>
         <Card className="flex-1">
           <CardHeader>
@@ -112,14 +115,16 @@ export default function Home() {
               <LinkIcon className="w-full h-full" />
             </div>
           </CardContent>
-          <CardFooter>
-            <Link
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300  bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full"
-              to="/register"
-            >
-              Join us
-            </Link>
-          </CardFooter>
+          {!authContext.isLoggedIn ? (
+            <CardFooter>
+              <Link
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-zinc-300 bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 h-9 px-4 py-2 w-full"
+                to="/register"
+              >
+                Join us
+              </Link>
+            </CardFooter>
+          ) : null}
         </Card>
       </div>
     </div>
